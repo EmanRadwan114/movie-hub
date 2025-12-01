@@ -19,7 +19,9 @@ function Layout() {
   return (
     <>
       <ToastContainer />
-      <Outlet />
+      <div className="container px-3 py-16 md:px-5 mx-auto min-h-[90vh]">
+        <Outlet />
+      </div>
     </>
   );
 }
