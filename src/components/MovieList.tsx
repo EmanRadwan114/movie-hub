@@ -1,13 +1,17 @@
 import { useFetch } from "@/hooks/useMovies";
 import { getAllMovies } from "@/services/movies";
-import type { IMovie } from "@/types/interfaces";
+import type { IMovie, IMovieResponse } from "@/types/interfaces";
 import React, { useCallback } from "react";
 import MovieCard from "./MovieCard";
 
 const MovieList: React.FC = () => {
   const fetchMovies = useCallback(() => getAllMovies(), []);
 
-  const { data: movies, isLoading, isError } = useFetch(fetchMovies);
+  const {
+    data: movies,
+    isLoading: isMovieLoading,
+    isError: isMovieError,
+  } = useFetch<IMovieResponse>(fetchMovies);
 
   return (
     <>
