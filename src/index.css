@@ -42,24 +42,24 @@
     "Liberation Mono", "Courier New", monospace;
   --radius: 0.35rem;
   --shadow-x: 0;
-  --shadow-y: 1.5px;
+  --shadow-y: 7px;
   --shadow-blur: 4px;
   --shadow-spread: 0px;
   --shadow-opacity: 0.68;
   --shadow-color: oklch(0.439 0 0);
-  --shadow-2xs: 0 1.5px 4px 0px hsl(223.8136 0% 32.1993% / 0.34);
-  --shadow-xs: 0 1.5px 4px 0px hsl(223.8136 0% 32.1993% / 0.34);
-  --shadow-sm: 0 1.5px 4px 0px hsl(223.8136 0% 32.1993% / 0.68),
-    0 1px 2px -1px hsl(223.8136 0% 32.1993% / 0.68);
-  --shadow: 0 1.5px 4px 0px hsl(223.8136 0% 32.1993% / 0.68),
-    0 1px 2px -1px hsl(223.8136 0% 32.1993% / 0.68);
-  --shadow-md: 0 1.5px 4px 0px hsl(223.8136 0% 32.1993% / 0.68),
-    0 2px 4px -1px hsl(223.8136 0% 32.1993% / 0.68);
-  --shadow-lg: 0 1.5px 4px 0px hsl(223.8136 0% 32.1993% / 0.68),
-    0 4px 6px -1px hsl(223.8136 0% 32.1993% / 0.68);
-  --shadow-xl: 0 1.5px 4px 0px hsl(223.8136 0% 32.1993% / 0.68),
-    0 8px 10px -1px hsl(223.8136 0% 32.1993% / 0.68);
-  --shadow-2xl: 0 1.5px 4px 0px hsl(223.8136 0% 32.1993% / 1.7);
+  --shadow-2xs: 0 1.5px 4px 0px hsla(0, 0%, 71%, 0.34);
+  --shadow-xs: 0 1.5px 4px 0px hsla(0, 0%, 71%, 0.34);
+  --shadow-sm: 0 1.5px 4px 0px hsla(0, 0%, 71%, 0.68),
+    0 1px 2px -1px hsla(0, 0%, 71%, 0.68);
+  --shadow: 0 1.5px 4px 0px hsla(0, 0%, 71%, 0.68),
+    0 1px 2px -1px hsla(0, 0%, 71%, 0.68);
+  --shadow-md: 0 1.5px 4px 0px hsla(0, 0%, 71%, 0.68),
+    0 2px 4px -1px hsla(0, 0%, 71%, 0.68);
+  --shadow-lg: 0 1.5px 4px 0px hsla(0, 0%, 71%, 0.68),
+    0 4px 6px -1px hsla(0, 0%, 71%, 0.68);
+  --shadow-xl: 0 1.5px 4px 0px hsla(0, 0%, 71%, 0.68),
+    0 8px 10px -1px hsla(0, 0%, 71%, 0.68);
+  --shadow-2xl: 0 1.5px 4px 0px hsla(0, 0%, 71%, 1.7);
   --tracking-normal: 0em;
   --spacing: 0.25rem;
 }
@@ -182,5 +182,6 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-sans);
   }
 }
