@@ -25,7 +25,7 @@ const MovieDetails: React.FC = () => {
   if (isLoading) return;
   return (
     <main className="flex items-center justify-center">
-      <Card className="border-0 shadow-xl p-0 w-full">
+      <Card className="border-0 shadow-xl p-0 w-full mt-5">
         <CardContent className="p-0 grid grid-cols-1 md:grid-cols-3 items-center">
           <div className="w-full">
             <img
@@ -38,8 +38,8 @@ const MovieDetails: React.FC = () => {
             <h2 className="font-extrabold text-xl text-primary mb-2">
               {movie?.title}
             </h2>
-            <div className="flex flex-col gap-y-4">
-              <p className="text-neutral-600">{movie?.overview}</p>
+            <div className="flex flex-col gap-y-4 text-lg">
+              <p className="text-neutral-600 text-lg">{movie?.overview}</p>
               <MovieCategories categories={movie?.genres} />
 
               {/*———————————————————————————————— release date ————————————————————————————————*/}
@@ -47,7 +47,10 @@ const MovieDetails: React.FC = () => {
                 <span className="capitalize font-extrabold text-neutral-800">
                   release date:{" "}
                 </span>
-                <Badge variant={"secondary"} className="font-semibold">
+                <Badge
+                  variant={"secondary"}
+                  className="font-semibold text-base"
+                >
                   {movie?.release_date}
                 </Badge>
               </div>
@@ -56,7 +59,7 @@ const MovieDetails: React.FC = () => {
                 <span className="capitalize font-extrabold text-neutral-800">
                   time:{" "}
                 </span>
-                <Badge variant={"default"} className="font-semibold">
+                <Badge variant={"default"} className="font-semibold text-base">
                   {movie?.runtime} mins
                 </Badge>
               </div>

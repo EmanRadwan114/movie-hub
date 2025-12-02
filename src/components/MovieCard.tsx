@@ -69,7 +69,7 @@ const MovieCard: React.FC<IProps> = ({ movie }) => {
             <h3 className="text-primary font-semibold capitalize text-lg mb-1 hover:text-secondary transition-colors duration-300">
               {movie.title}
             </h3>
-            <p className="text-neutral-600 mb-2">
+            <p className="text-neutral-600 mb-3">
               {movie.overview.slice(0, 50)}...
             </p>
             <MovieCategories categories={movieCategories} />
