@@ -5,6 +5,7 @@ import React, { useCallback, useContext, useEffect, useState } from "react";
 import MovieCard from "./MovieCard";
 import { MoviesContext } from "@/contexts/MoviesContext";
 import Pagination from "./ui/Pagination";
+import EmptyList from "./ui/emptyList";
 
 const MovieList: React.FC = () => {
   const { setMovies, movies, searchTerm } = useContext(MoviesContext);
@@ -51,11 +52,7 @@ const MovieList: React.FC = () => {
           />
         </>
       ) : (
-        <div className="flex items-center justify-center py-10">
-          <p className="text-2xl font-semibold text-neutral-700 text-center ">
-            No Movies Found
-          </p>
-        </div>
+        <EmptyList message="no movies found" />
       )}
     </>
   );
