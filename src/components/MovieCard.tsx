@@ -1,16 +1,20 @@
 import React, { useContext } from "react";
-import { Card, CardContent, CardFooter, CardHeader } from "./ui/Card";
 import type { IMovie } from "@/types/interfaces";
 import { baseImgURL } from "@/lib/apiUrl";
-
 import { Link, useNavigate } from "react-router";
 import { Heart } from "lucide-react";
-import { Button } from "./ui/Button";
 import { MoviesContext } from "@/contexts/MoviesContext";
 import { toast } from "react-toastify";
 import MovieCategories from "./ui/MovieCategories";
 import { useCategories } from "@/hooks/useCategories";
-import Rate from "./ui/Rate";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Rate } from "@/components/ui/rate";
 
 interface IProps {
   movie: IMovie;

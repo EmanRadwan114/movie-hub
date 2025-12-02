@@ -1,6 +1,6 @@
 import type { ICategory } from "@/types/interfaces";
 import React from "react";
-import { Badge } from "./Badge";
+import { Badge } from "./badge";
 
 interface IProps {
   categories: ICategory[] | undefined;

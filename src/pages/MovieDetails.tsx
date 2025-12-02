@@ -1,8 +1,8 @@
-import { Badge } from "@/components/ui/Badge";
-import { Button } from "@/components/ui/Button";
-import { Card, CardContent } from "@/components/ui/Card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import MovieCategories from "@/components/ui/MovieCategories";
-import Rate from "@/components/ui/Rate";
+import Rate from "@/components/ui/rate";
 import { useFetch } from "@/hooks/useMovies";
 import { baseImgURL } from "@/lib/apiUrl";
 import { getMovieById } from "@/services/movies";
