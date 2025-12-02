@@ -4,7 +4,7 @@ import { Heart, Menu, Search } from "lucide-react";
 import { Link } from "react-router";
 import { getAllMovies, searchMovie } from "@/services/movies";
 import { MoviesContext } from "@/contexts/MoviesContext";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
