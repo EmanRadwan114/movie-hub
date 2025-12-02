@@ -12,9 +12,9 @@ import {
   CardContent,
   CardFooter,
   CardHeader,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Rate } from "@/components/ui/rate";
+} from "@/components/ui/Card";
+import { Button } from "@/components/ui/Button";
+import Rate from "@/components/ui/Rate";
 
 interface IProps {
   movie: IMovie;
