@@ -1,5 +1,5 @@
 import { getCategories } from "@/services/movies";
-import type { ICategory } from "@/types/interfaces";
+import type { ICategory, IMovie } from "@/types/interfaces";
 import React, {
   createContext,
   useEffect,
@@ -13,6 +13,8 @@ interface IMoviesContext {
   setFavorites: React.Dispatch<React.SetStateAction<number[]>>;
   categories: ICategory[];
   setCategories: React.Dispatch<React.SetStateAction<ICategory[]>>;
+  movies: IMovie[];
+  setMovies: React.Dispatch<React.SetStateAction<IMovie[]>>;
 }
 
 interface IProps {
@@ -24,11 +26,14 @@ const MoviesContext = createContext<IMoviesContext>({
   setFavorites: () => {},
   categories: [],
   setCategories: () => {},
+  movies: [],
+  setMovies: () => {},
 });
 
 const MoviesContextProvider: React.FC<IProps> = ({ children }) => {
   const [favorites, setFavorites] = useState<number[]>([]);
   const [categories, setCategories] = useState<ICategory[]>([]);
+  const [movies, setMovies] = useState<IMovie[]>([]);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -47,7 +52,14 @@ const MoviesContextProvider: React.FC<IProps> = ({ children }) => {
 
   return (
     <MoviesContext.Provider
-      value={{ favorites, setFavorites, categories, setCategories }}
+      value={{
+        favorites,
+        setFavorites,
+        categories,
+        setCategories,
+        movies,
+        setMovies,
+      }}
     >
       {children}
     </MoviesContext.Provider>

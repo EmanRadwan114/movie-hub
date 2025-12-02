@@ -15,7 +15,11 @@ const MovieDetails: React.FC = () => {
 
   const fetchMovie = useCallback(() => getMovieById(id!), [id]);
 
-  const { data: movie, isLoading, isError } = useFetch<IMovie>(fetchMovie);
+  const {
+    data: movie,
+    isLoading,
+    // isError
+  } = useFetch<IMovie>(fetchMovie);
   console.log(movie?.genres);
 
   if (isLoading) return;
