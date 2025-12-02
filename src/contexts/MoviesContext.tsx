@@ -1,5 +1,5 @@
 import { getCategories } from "@/services/movies";
-import type { ICategory, IMovie } from "@/types/interfaces";
+import type { ICategory, IMovieResponse } from "@/types/interfaces";
 import React, {
   createContext,
   useEffect,
@@ -13,8 +13,10 @@ interface IMoviesContext {
   setFavorites: React.Dispatch<React.SetStateAction<number[]>>;
   categories: ICategory[];
   setCategories: React.Dispatch<React.SetStateAction<ICategory[]>>;
-  movies: IMovie[];
-  setMovies: React.Dispatch<React.SetStateAction<IMovie[]>>;
+  movies: IMovieResponse | null;
+  setMovies: React.Dispatch<React.SetStateAction<IMovieResponse | null>>;
+  searchTerm: string;
+  setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
 }
 
 interface IProps {
@@ -26,14 +28,17 @@ const MoviesContext = createContext<IMoviesContext>({
   setFavorites: () => {},
   categories: [],
   setCategories: () => {},
-  movies: [],
+  movies: null,
   setMovies: () => {},
+  searchTerm: "",
+  setSearchTerm: () => {},
 });
 
 const MoviesContextProvider: React.FC<IProps> = ({ children }) => {
   const [favorites, setFavorites] = useState<number[]>([]);
   const [categories, setCategories] = useState<ICategory[]>([]);
-  const [movies, setMovies] = useState<IMovie[]>([]);
+  const [movies, setMovies] = useState<IMovieResponse | null>(null);
+  const [searchTerm, setSearchTerm] = useState<string>("");
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -59,6 +64,8 @@ const MoviesContextProvider: React.FC<IProps> = ({ children }) => {
         setCategories,
         movies,
         setMovies,
+        searchTerm,
+        setSearchTerm,
       }}
     >
       {children}

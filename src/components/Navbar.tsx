@@ -2,15 +2,14 @@ import React, { useContext, useState, type ChangeEvent } from "react";
 import logo from "../assets/popcorn.png";
 import { Heart, Menu, Search } from "lucide-react";
 import { Link } from "react-router";
-import { Button } from "./ui/button";
 import { getAllMovies, searchMovie } from "@/services/movies";
 import { MoviesContext } from "@/contexts/MoviesContext";
+import { Button } from "@/components/ui/button";
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
 
-  const { setMovies } = useContext(MoviesContext);
+  const { setMovies, searchTerm, setSearchTerm } = useContext(MoviesContext);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
@@ -19,10 +18,10 @@ const Navbar: React.FC = () => {
   const handleSearch = async () => {
     if (searchTerm !== "") {
       const result = await searchMovie(searchTerm.trim());
-      setMovies(result.results);
+      setMovies(result);
     } else {
       const result = await getAllMovies();
-      setMovies(result.results);
+      setMovies(result);
     }
   };
 
@@ -30,12 +29,14 @@ const Navbar: React.FC = () => {
     <header className="fixed top-0 w-full bg-gray-100 shadow-lg z-50">
       <div className="container mx-auto px-2 py-5">
         <nav className="flex justify-between items-center relative">
-          <h1 className="flex items-center">
-            <img src={logo} alt="popcorn" className="w-10" />{" "}
-            <span className="text-2xl font-extrabold text-primary">
-              MoviesHub
-            </span>
-          </h1>
+          <Link to={"/"}>
+            <h1 className="flex items-center">
+              <img src={logo} alt="popcorn" className="w-10" />{" "}
+              <span className="text-2xl font-extrabold text-primary">
+                MoviesHub
+              </span>
+            </h1>
+          </Link>
 
           <div className="gap-5 w-2/3 justify-end hidden md:flex">
             <Link

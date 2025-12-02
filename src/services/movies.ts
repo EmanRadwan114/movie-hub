@@ -11,10 +11,10 @@ const getCategories = async () => {
 };
 
 //———————————————————————————————— get all movies ————————————————————————————————
-const getAllMovies = async () => {
+const getAllMovies = async (page?: number) => {
   try {
     const response = await axiosInstance.get(
-      "/discover/movie?sort_by=popularity.desc"
+      `/discover/movie?sort_by=popularity.desc&page=${page ?? 1}`
     );
     return response.data;
   } catch {
@@ -33,10 +33,12 @@ const getMovieById = async (id: string) => {
 };
 
 //———————————————————————————————— search movies ————————————————————————————————
-const searchMovie = async (query: string) => {
+const searchMovie = async (query: string, page?: number) => {
   try {
     const response = await axiosInstance.get(
-      `https://api.themoviedb.org/3/search/movie?query=${query}`
+      `https://api.themoviedb.org/3/search/movie?query=${query}&page=${
+        page ?? 1
+      }`
     );
     return response.data;
   } catch {
