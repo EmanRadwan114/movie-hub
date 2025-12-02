@@ -5,11 +5,13 @@ import { Link } from "react-router";
 import { getAllMovies, searchMovie } from "@/services/movies";
 import { MoviesContext } from "@/contexts/MoviesContext";
 import { Button } from "@/components/ui/button";
+import { Badge } from "./ui/badge";
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const { setMovies, searchTerm, setSearchTerm } = useContext(MoviesContext);
+  const { setMovies, searchTerm, setSearchTerm, favorites } =
+    useContext(MoviesContext);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
@@ -38,13 +40,20 @@ const Navbar: React.FC = () => {
             </h1>
           </Link>
 
-          <div className="gap-5 w-2/3 justify-end hidden md:flex">
+          <div className="gap-5 w-2/3 justify-end items-center hidden md:flex">
             <Link
               to={"/favorites"}
-              className="flex gap-1 items-center font-semibold text-neutral-700 p-2 rounded-md  hover:text-secondary transition-colors duration-300"
+              className="font-semibold text-neutral-700 p-2 rounded-md  hover:text-secondary transition-colors duration-300 relative"
             >
-              <span>Favourite Movies</span>{" "}
-              <Heart className="-mt-0.5" strokeWidth={3} size={16} />
+              <Heart strokeWidth={1} size={30} />
+              {favorites.length ? (
+                <Badge
+                  variant={"secondary"}
+                  className="w-4 rounded-md absolute end-0 top-0 text-sm p-0"
+                >
+                  {favorites.length}
+                </Badge>
+              ) : null}
             </Link>
             <div className="flex flex-col sm:flex-row justify-between gap-1 items-start">
               <div className="relative flex-1 w-full">
@@ -77,10 +86,17 @@ const Navbar: React.FC = () => {
             <div className="absolute top-full end-1 rounded-xl p-4 bg-neutral-50 shadow-lg z-100 flex flex-col gap-3 w-full sm:w-2/3">
               <Link
                 to={"/favorites"}
-                className="w-full flex gap-1 items-center font-semibold text-neutral-700 p-2 rounded-md  hover:bg-neutral-200 transition-colors duration-300"
+                className="font-semibold text-neutral-700 p-2 rounded-md  hover:text-secondary transition-colors duration-300 relative w-fit mx-auto"
               >
-                <span>Favourite Movies</span>{" "}
-                <Heart className="-mt-0.5" strokeWidth={3} size={16} />
+                <Heart strokeWidth={1} size={30} />
+                {favorites.length ? (
+                  <Badge
+                    variant={"secondary"}
+                    className="w-4 rounded-md absolute end-0 top-0 text-sm p-0"
+                  >
+                    {favorites.length}
+                  </Badge>
+                ) : null}
               </Link>
               <div className="flex flex-col sm:flex-row justify-between gap-1 items-start">
                 <div className="relative flex-1 w-full">

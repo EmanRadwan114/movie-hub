@@ -1,5 +1,5 @@
 import { getCategories } from "@/services/movies";
-import type { ICategory, IMovieResponse } from "@/types/interfaces";
+import type { ICategory, IMovie, IMovieResponse } from "@/types/interfaces";
 import React, {
   createContext,
   useEffect,
@@ -9,8 +9,8 @@ import React, {
 import { toast } from "react-toastify";
 
 interface IMoviesContext {
-  favorites: number[];
-  setFavorites: React.Dispatch<React.SetStateAction<number[]>>;
+  favorites: IMovie[];
+  setFavorites: React.Dispatch<React.SetStateAction<IMovie[]>>;
   categories: ICategory[];
   setCategories: React.Dispatch<React.SetStateAction<ICategory[]>>;
   movies: IMovieResponse | null;
@@ -35,7 +35,7 @@ const MoviesContext = createContext<IMoviesContext>({
 });
 
 const MoviesContextProvider: React.FC<IProps> = ({ children }) => {
-  const [favorites, setFavorites] = useState<number[]>([]);
+  const [favorites, setFavorites] = useState<IMovie[]>([]);
   const [categories, setCategories] = useState<ICategory[]>([]);
   const [movies, setMovies] = useState<IMovieResponse | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>("");

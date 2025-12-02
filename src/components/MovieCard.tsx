@@ -28,14 +28,17 @@ const MovieCard: React.FC<IProps> = ({ movie }) => {
   //———————————————————————————————— add to favourite ————————————————————————————————
   const { favorites, setFavorites } = useContext(MoviesContext);
 
-  const addToFavourite = (id: number) => {
-    if (favorites.includes(id)) {
-      setFavorites((prev) => prev.filter((item) => item !== id));
+  const isInFavourites = !!favorites.find((item) => item.id === movie.id);
+
+  const addToFavourite = (favItem: IMovie) => {
+    if (isInFavourites) {
+      setFavorites((prev) => prev.filter((item) => item.id !== favItem.id));
       toast.success("Movie removed from favorites successfully");
     } else {
-      setFavorites((prev) => [...prev, id]);
+      setFavorites((prev) => [...prev, favItem]);
       toast.success("Movie added to favorites successfully");
     }
+    console.log(isInFavourites);
   };
 
   return (
@@ -56,10 +59,10 @@ const MovieCard: React.FC<IProps> = ({ movie }) => {
             <Heart
               size={30}
               className={`absolute top-5 end-5 text-transparent cursor-pointer ${
-                favorites.includes(movie.id) ? "fill-red-700" : "fill-white"
+                isInFavourites ? "fill-red-700" : "fill-white"
               }`}
               fill="white"
-              onClick={() => addToFavourite(movie.id)}
+              onClick={() => addToFavourite(movie)}
             />
           </div>
         </CardHeader>
