@@ -22,7 +22,7 @@ function Layout() {
     <div className="flex flex-col gap-12 min-h-screen">
       <Navbar />
       <ToastContainer />
-      <div className="container px-3 py-16 md:px-5 mx-auto">
+      <div className="container px-3 pt-16 pb-1 md:px-5 mx-auto">
         <Outlet />
       </div>
       <Footer />

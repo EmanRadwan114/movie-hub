@@ -1,7 +1,7 @@
 import React, { useContext, useState, type ChangeEvent } from "react";
 import logo from "../assets/popcorn.png";
 import { Heart, Menu, Search } from "lucide-react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { getAllMovies, searchMovie } from "@/services/movies";
 import { MoviesContext } from "@/contexts/MoviesContext";
 import { Button } from "@/components/ui/button";
@@ -9,6 +9,7 @@ import { Badge } from "./ui/badge";
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   const {
     setMovies,
@@ -24,6 +25,7 @@ const Navbar: React.FC = () => {
   };
 
   const handleSearch = async () => {
+    navigate("/");
     if (searchTerm !== "") {
       const result = await searchMovie(searchTerm.trim(), currentPage);
       setMovies(result);
@@ -59,6 +61,9 @@ const Navbar: React.FC = () => {
             <Link
               to={"/favorites"}
               className="font-semibold text-neutral-700 p-2 rounded-md  hover:text-secondary transition-colors duration-300 relative"
+              onClick={() => {
+                setSearchTerm("");
+              }}
             >
               <Heart strokeWidth={1} size={30} />
               {favorites.length ? (
