@@ -6,6 +6,7 @@ import Layout from "./Layout";
 import Home from "./pages/Home";
 import MovieDetails from "./pages/MovieDetails";
 import FavoriteMovies from "./pages/FavoriteMovies";
+import NotFound from "./components/NotFound";
 
 const router = createBrowserRouter([
   {
@@ -15,7 +16,7 @@ const router = createBrowserRouter([
       { index: true, element: <Home /> },
       { path: "favorites", element: <FavoriteMovies /> },
       { path: "movie/:id", element: <MovieDetails /> },
-      { path: "*", element: "" },
+      { path: "*", element: <NotFound /> },
     ],
   },
 ]);

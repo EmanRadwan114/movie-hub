@@ -4,7 +4,7 @@ const Footer: React.FC = () => {
   const year = new Date().getFullYear();
   return (
     <footer className="flex justify-center items-center bg-secondary py-3 px-1 mt-auto">
-      <p className="text-white capitalize font-semibold">
+      <p className="text-white capitalize font-semibold text-center">
         all rights reserved &copy; MoviesHub {year}
       </p>
       ;

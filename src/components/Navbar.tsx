@@ -60,7 +60,7 @@ const Navbar: React.FC = () => {
           <div className="gap-5 w-2/3 justify-end items-center hidden md:flex">
             <Link
               to={"/favorites"}
-              className="font-semibold text-neutral-700 p-2 rounded-md  hover:text-secondary transition-colors duration-300 relative"
+              className="font-semibold text-neutral-700 p-2 rounded-md  hover:text-primary transition-colors duration-300 relative"
               onClick={() => {
                 setSearchTerm("");
               }}
@@ -80,7 +80,7 @@ const Navbar: React.FC = () => {
                 <input
                   type="text"
                   placeholder="Search a Movie"
-                  className="border rounded-md px-2 py-1.5 focus-within:outline-secondary w-full"
+                  className="border rounded-md px-2 py-1.5 focus-within:outline-primary w-full"
                   value={searchTerm}
                   onChange={handleChange}
                 />
@@ -106,12 +106,12 @@ const Navbar: React.FC = () => {
             <div className="absolute top-full end-1 rounded-xl p-4 bg-neutral-50 shadow-lg z-100 flex flex-col gap-3 w-full sm:w-2/3">
               <Link
                 to={"/favorites"}
-                className="font-semibold text-neutral-700 p-2 rounded-md  hover:text-secondary transition-colors duration-300 relative w-fit mx-auto"
+                className="font-semibold text-neutral-700 p-2 rounded-md  hover:text-primary transition-colors duration-300 relative w-fit mx-auto"
               >
                 <Heart strokeWidth={1} size={30} />
                 {favorites.length ? (
                   <Badge
-                    variant={"secondary"}
+                    variant={"primary"}
                     className="w-4 rounded-md absolute end-0 top-0 text-sm p-0"
                   >
                     {favorites.length}
@@ -123,14 +123,14 @@ const Navbar: React.FC = () => {
                   <input
                     type="text"
                     placeholder="Search a Movie"
-                    className="border rounded-md px-2 py-1.5 focus-within:outline-secondary w-full"
+                    className="border rounded-md px-2 py-1.5 focus-within:outline-primary w-full"
                     value={searchTerm}
                     onChange={handleChange}
                   />
                   <Search strokeWidth={1} className="absolute end-2 top-1.5" />
                 </div>
                 <Button
-                  variant={"secondary"}
+                  variant={"default"}
                   className="font-semibold w-full sm:w-fit"
                   onClick={handleSearch}
                 >
