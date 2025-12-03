@@ -6,10 +6,11 @@ import MovieCard from "./MovieCard";
 import { MoviesContext } from "@/contexts/MoviesContext";
 import Pagination from "./ui/Pagination";
 import EmptyList from "./ui/emptyList";
+import { Spinner } from "./ui/spinner";
 
 const MovieList: React.FC = () => {
-  const { setMovies, movies, searchTerm } = useContext(MoviesContext);
-  const [currentPage, setCurrentPage] = useState(1);
+  const { setMovies, movies, searchTerm, currentPage, setCurrentPage } =
+    useContext(MoviesContext);
 
   const fetchMovies = useCallback(
     () =>
@@ -21,7 +22,7 @@ const MovieList: React.FC = () => {
 
   const {
     data: fetchedMovies,
-    // isLoading: isMovieLoading,
+    isLoading: isMovieLoading,
     // isError: isMovieError,
   } = useFetch<IMovieResponse>(fetchMovies);
 
@@ -33,8 +34,9 @@ const MovieList: React.FC = () => {
 
   const handlePaginationChange = (val: number) => {
     setCurrentPage(val);
-    // setMovies(fetchedMovies);
   };
+
+  if (isMovieLoading) return <Spinner />;
 
   return (
     <>

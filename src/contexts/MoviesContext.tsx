@@ -17,6 +17,8 @@ interface IMoviesContext {
   setMovies: React.Dispatch<React.SetStateAction<IMovieResponse | null>>;
   searchTerm: string;
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
+  currentPage: number;
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
 interface IProps {
@@ -32,6 +34,8 @@ const MoviesContext = createContext<IMoviesContext>({
   setMovies: () => {},
   searchTerm: "",
   setSearchTerm: () => {},
+  currentPage: 1,
+  setCurrentPage: () => {},
 });
 
 const MoviesContextProvider: React.FC<IProps> = ({ children }) => {
@@ -39,6 +43,7 @@ const MoviesContextProvider: React.FC<IProps> = ({ children }) => {
   const [categories, setCategories] = useState<ICategory[]>([]);
   const [movies, setMovies] = useState<IMovieResponse | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>("");
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -66,6 +71,8 @@ const MoviesContextProvider: React.FC<IProps> = ({ children }) => {
         setMovies,
         searchTerm,
         setSearchTerm,
+        currentPage,
+        setCurrentPage,
       }}
     >
       {children}

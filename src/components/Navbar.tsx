@@ -10,8 +10,14 @@ import { Badge } from "./ui/badge";
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const { setMovies, searchTerm, setSearchTerm, favorites } =
-    useContext(MoviesContext);
+  const {
+    setMovies,
+    searchTerm,
+    setSearchTerm,
+    favorites,
+    setCurrentPage,
+    currentPage,
+  } = useContext(MoviesContext);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
@@ -19,10 +25,11 @@ const Navbar: React.FC = () => {
 
   const handleSearch = async () => {
     if (searchTerm !== "") {
-      const result = await searchMovie(searchTerm.trim());
+      const result = await searchMovie(searchTerm.trim(), currentPage);
       setMovies(result);
+      setCurrentPage(1);
     } else {
-      const result = await getAllMovies();
+      const result = await getAllMovies(currentPage);
       setMovies(result);
     }
   };
@@ -31,10 +38,18 @@ const Navbar: React.FC = () => {
     <header className="fixed top-0 w-full bg-gray-100 shadow-lg z-50">
       <div className="container mx-auto px-2 py-5">
         <nav className="flex justify-between items-center relative">
-          <Link to={"/"}>
+          <Link
+            to={"/"}
+            onClick={async () => {
+              setSearchTerm("");
+              setCurrentPage(1);
+              const result = await getAllMovies(currentPage);
+              setMovies(result);
+            }}
+          >
             <h1 className="flex items-center">
-              <img src={logo} alt="popcorn" className="w-10" />{" "}
-              <span className="text-2xl font-extrabold text-primary">
+              <img src={logo} alt="popcorn" className="w-8" />{" "}
+              <span className="text-2xl font-extrabold text-primary -ms-1 mt-0.5">
                 MoviesHub
               </span>
             </h1>
@@ -48,7 +63,7 @@ const Navbar: React.FC = () => {
               <Heart strokeWidth={1} size={30} />
               {favorites.length ? (
                 <Badge
-                  variant={"secondary"}
+                  variant={"primary"}
                   className="w-4 rounded-md absolute end-0 top-0 text-sm p-0"
                 >
                   {favorites.length}
@@ -67,7 +82,7 @@ const Navbar: React.FC = () => {
                 <Search strokeWidth={1} className="absolute end-2 top-1.5" />
               </div>
               <Button
-                variant={"secondary"}
+                variant={"default"}
                 className="font-semibold w-full sm:w-fit"
                 onClick={handleSearch}
               >
