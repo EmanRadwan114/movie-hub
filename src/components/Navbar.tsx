@@ -50,8 +50,8 @@ const Navbar: React.FC = () => {
             }}
           >
             <h1 className="flex items-center">
-              <img src={logo} alt="popcorn" className="w-8" />{" "}
-              <span className="text-2xl font-extrabold text-primary -ms-1 mt-0.5">
+              <img src={logo} alt="popcorn" className="w-12" />{" "}
+              <span className="text-2xl font-extrabold text-primary">
                 MoviesHub
               </span>
             </h1>
