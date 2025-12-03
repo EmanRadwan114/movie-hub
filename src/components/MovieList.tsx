@@ -1,7 +1,7 @@
 import { useFetch } from "@/hooks/useMovies";
 import { getAllMovies, searchMovie } from "@/services/movies";
 import type { IMovie, IMovieResponse } from "@/types/interfaces";
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect } from "react";
 import MovieCard from "./MovieCard";
 import { MoviesContext } from "@/contexts/MoviesContext";
 import Pagination from "./ui/Pagination";
