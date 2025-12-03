@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Rate from "@/components/ui/rate";
+import fallbackImg from "@/assets/fallback-img.jpg";
 
 interface IProps {
   movie: IMovie;
@@ -50,7 +51,11 @@ const MovieCard: React.FC<IProps> = ({ movie }) => {
         {/*———————————————————————————————— card header ————————————————————————————————*/}
         <CardHeader className="p-0 relative gap-0 mb-2">
           <img
-            src={`${baseImgURL}${movie.poster_path}`}
+            src={
+              movie.poster_path
+                ? `${baseImgURL}${movie.poster_path}`
+                : fallbackImg
+            }
             alt={movie.title}
             className="object-cover w-full h-72 rounded-t-xl group-hover:scale-105 transition-transform duration-500"
           />

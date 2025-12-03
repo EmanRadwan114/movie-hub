@@ -8,30 +8,38 @@ import { baseImgURL } from "@/lib/apiUrl";
 import { getMovieById } from "@/services/movies";
 import type { IMovie } from "@/types/interfaces";
 import React, { useCallback } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
+import fallbackImg from "@/assets/fallback-img.jpg";
+import { Spinner } from "@/components/ui/spinner";
 
 const MovieDetails: React.FC = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const fetchMovie = useCallback(() => getMovieById(id!), [id]);
 
-  const {
-    data: movie,
-    isLoading,
-    // isError
-  } = useFetch<IMovie>(fetchMovie);
-  console.log(movie?.genres);
+  const { data: movie, isLoading } = useFetch<IMovie>(fetchMovie);
 
-  if (isLoading) return;
+  if (isLoading)
+    return (
+      <div className="flex justify-center items-center min-h-[60vh]">
+        <Spinner className="size-10 text-neutral-500" />
+      </div>
+    );
+
   return (
     <main className="flex items-center justify-center">
       <Card className="border-0 shadow-xl p-0 w-full mt-5">
-        <CardContent className="p-0 grid grid-cols-1 md:grid-cols-3 items-center">
+        <CardContent className="p-0 grid grid-cols-1 md:grid-cols-3">
           <div className="w-full">
             <img
-              src={`${baseImgURL}${movie?.poster_path}`}
+              src={
+                movie?.poster_path
+                  ? `${baseImgURL}${movie?.poster_path}`
+                  : fallbackImg
+              }
               alt={movie?.title}
-              className="object-cover h-[450px] md:min-h-[300px] w-full rounded-t-xl md:rounded-xl md:rounded-r-none"
+              className="object-cover h-[450px] md:min-h-[300px] md:max-h-full w-full rounded-t-xl md:rounded-xl md:rounded-r-none"
             />
           </div>
           <div className="p-5 col-span-2">
@@ -75,13 +83,16 @@ const MovieDetails: React.FC = () => {
                 </span>
               </div>
 
-              <Button className="capitalize font-semibold">
+              <Button
+                className="capitalize font-semibold"
+                onClick={() => !movie?.homepage && navigate("/")}
+              >
                 <a
-                  href={movie?.homepage ? movie?.homepage : "/"}
+                  href={movie?.homepage && movie?.homepage}
                   target={movie?.homepage ? "_blank" : "_self"}
                   className="w-full inline-block"
                 >
-                  book your seat
+                  {movie?.homepage ? "Movie Homepage" : "Back to home"}
                 </a>
               </Button>
             </div>

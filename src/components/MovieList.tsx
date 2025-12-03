@@ -20,11 +20,8 @@ const MovieList: React.FC = () => {
     [currentPage]
   );
 
-  const {
-    data: fetchedMovies,
-    isLoading: isMovieLoading,
-    // isError: isMovieError,
-  } = useFetch<IMovieResponse>(fetchMovies);
+  const { data: fetchedMovies, isLoading: isMovieLoading } =
+    useFetch<IMovieResponse>(fetchMovies);
 
   useEffect(() => {
     if (fetchedMovies) {
@@ -36,11 +33,16 @@ const MovieList: React.FC = () => {
     setCurrentPage(val);
   };
 
-  if (isMovieLoading) return <Spinner />;
+  if (isMovieLoading)
+    return (
+      <div className="flex justify-center items-center min-h-[60vh]">
+        <Spinner className="size-10 text-neutral-500" />
+      </div>
+    );
 
   return (
     <>
-      {movies?.results?.length ? (
+      {!isMovieLoading && movies?.results?.length ? (
         <>
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-x-3 gap-y-5">
             {movies.results?.map((item: IMovie) => (
