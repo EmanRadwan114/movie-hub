@@ -13,3 +13,13 @@ MoviesHub allows users to explore movies, search for specific titles, view detai
 - ℹ️ See detailed information about each movie
 - 🗂️ State management using Context API
 - 🎨 Clean, modern, and responsive UI using Tailwind CSS & shadcn/ui
+
+## ⚡ Built With Vite
+
+This project uses **Vite** for fast development and optimized production builds.
+
+## 📦 Getting Started
+
+npm install  
+npm run dev
+
