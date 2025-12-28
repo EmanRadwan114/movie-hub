@@ -6,7 +6,7 @@ MoviesHub allows users to explore movies, search for specific titles, view detai
 
 ## 🚀 Features
 
-- 🎥 Browse a collection of movies
+- 🎥 Browse a collection of movies using TMDB Movies API
 - 🔍 Search for movies
 - ❤️ Add movies to your favorites list
 - 📋 View and manage the full favorites list
